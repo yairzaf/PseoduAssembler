@@ -1,0 +1,15 @@
+assembler: main.o file_handle.o code_phrase.o compiler.o error_report.o bits.o
+	cc -o assembler main.o file_handle.o code_phrase.o compiler.o error_report.o bits.o
+
+main.o: main.c code_phrase.h
+	cc -c main.c
+file_handle.o: file_handle.c file_handle.h
+	cc -c file_handle.c
+code_phrase.o: code_phrase.c code_phrase.h bits.h compiler.h file_handle.h error_report.h
+	cc -c code_phrase.c
+compiler.o: compiler.c compiler.h file_handle.h bits.h error_report.h code_phrase.h
+	cc -c compiler.c
+error_report.o: error_report.c error_report.h
+	cc -c error_report.c
+bits.o: bits.c bits.h compiler.h file_handle.h
+	cc -c bits.c
